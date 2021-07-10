@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识Vue</title>
+</head>
+<!-- 1.<div id="root"> 是一个容器，容器中写的不是原始的html代码，
+    而是Vue的模板代码。
+        2.所谓的模板代码类似于react中的jsx。是html+js的混合体。
+        3.{{xxx}}，xxx会自动读取data中的xxx属性。
+-->
+
+<body>
+    <!-- // 准备一个容器  -->
+    <div id="root">
+        <h1>Hello，尚硅谷</h1>
+        <h2>{{message.message1.toUpperCase()}}</h2>
+        <h2>{{message.message2}}</h2>
+        <h2>{{message.message3().toUpperCase()}}</h2>
+        <h2>{{message.message1 , message.message2}}</h2>
+        <h2>{{message.message1 && message.message2}}</h2>
+        <h2>{{message.message1 ? 1:2}}</h2>
+    </div>
+
+
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+        //创建一个Vue的实例对象,并传入配置对象
+        new Vue({
+            el: '#root', //el用于指定当前Vue实例为哪个容器服务。且只能绑定一个
+            //data是存储数据的地方，为root容器提供数据。值为一个对象。
+            data: {
+                message: {
+                    message1: 'abc',
+                    message2: '345',
+                    message3: () => 'abc'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
