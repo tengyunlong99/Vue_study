@@ -15,7 +15,10 @@
     备注：
       1.双向数据绑定一般都是针对表单类元素。
       2.v-model:value可以简写成v-model。因为v-model默认收集value的值。
-   -->
+   
+        model通过data bindings 将data中的数据绑定到view中
+        veiw通过dom listeners监听器将view实例中的数据返回到view model中
+  -->
   <center>
     <div id="root">
       单项数据绑定(v-bind)<input type="text" :value="message">
@@ -26,12 +29,33 @@
   </center>
   <script src="../js/vue.js" type="text/javascript"></script>
   <script>
-    new Vue({
-      el: '#root',
+    /*el的第一种写法
+     new Vue({
+       el: '#root',
+       data: {
+         message: 'tengyl'
+       }
+     })*/
+
+    /*el的第二种写法
+    var vm=new Vue({
       data: {
         message: 'TengYunLong'
       }
     })
+    vm.$mount('#root')*/
+
+    // setTimeout(() => { vm.message = 'tengyunlong99' }, 1000)
+
+    //data的第一种写法，data是一个对象
+    /*new Vue({
+      el: '#root',
+      data: {
+        message: 'tengyl'
+      }
+    })*/
+
+//data的第二种写法，data是一个函数
   </script>
 </body>
 
