@@ -13,13 +13,21 @@
   <div id="root">
     <h2>hello,{{msg}}</h2>
   </div>
+
+
   <script>
-    new Vue({
+    var vm = new Vue({
       el: '#root',
       data: {
         msg: 'hello'
       }
     })
+    //观察发现：通过vm能看到data中的属性（注意不是看到data）
+    setTimeout(() => {
+      console.log(this)
+      console.log(vm.msg)
+      vm.msg = 'guod'
+    }, 1000);
   </script>
 </body>
 
