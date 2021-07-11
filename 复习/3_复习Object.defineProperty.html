@@ -1,12 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>复习Object.defineProperty.html</title>
+    <script src="../js/vue.js" type="text/javascript"></script>
 </head>
+
 <body>
-    
+    <!-- 关于Vue的数据代理：
+        1.什么是数据代理？
+            （1）.配置对象data中的数据，灰白收集到vm.data中，然后通过. Object.defineProperty让vm上拥有data中所有的属性。
+            （2）.当访问vm的msg时，返回的是_data中同名属性的值。
+            （3）.当修改vm的msg时，修改的是_data中同名属性的值。
+        2.为什么要数据代理？
+            为了更加方便的读取和修改_data中的数据，不做数据代理，就要：vm._data.xxx来访问数据。
+        3.扩展思考？-- 为什么要先手机在_data中，然后再代理出去呢？
+            更加高效的坚实数据（直接收集到vm上会导致监视效率太低） -->
+    <script>
+        let person = {}
+        //如下这么写会形成一个递归（无限循环）
+        //set和get中的this都是当前对象
+        /* Object.defineProperty(person,'name',{
+            set(value){
+                console.log('set被调用了',value)
+                this.name=value
+            },
+            get(){
+                console.log('get被调用了')
+                return 100
+            }
+        })
+        person.name='滕云龙'
+        console.log(person.name) */
+        //模拟数据代理
+        let _data = { msg: '教育' }
+        let vm = {}
+        Object.defineProperty(vm, 'msg', {
+            set(value) {
+                _data.msg = value
+            },
+            get() {
+                return _data.msg
+            }
+        })
+        console.log(_data.msg)
+        console.log(vm)
+    </script>
 </body>
+
 </html>
