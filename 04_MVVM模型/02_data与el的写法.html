@@ -56,6 +56,13 @@
     }) */
 
     //data的第二种写法，data是一个函数，注意：data不要写成箭头函数，要写成普通函数，否侧this的志向就是window了，而不是Vue的实例。组件中用的多
+   //data的第二种写法，data是一个函数，且要返回数据对象（组建中必须使用函数式data）
+   /*
+      1.若使用函数式data，Vue会帮我们调用data函数，Vue就会得到返回的数据对象。从而使用，this的Vue的实例对象。
+      2.data不要写成箭头函数，要写成普通函数，否侧this志向的就是window了。
+      3.备注：Vue中的一个最最重要的原则：
+          由Vue所调用的函数，都不要写成箭头函数。一旦写了箭头函数，this就不对了（或许是undefined，或许是window）
+   */
     new Vue({
       el:'#root',
       data(){
@@ -64,6 +71,7 @@
         }
       }
     })
+    
     // vm.mount('#root')
   </script>
 </body>
