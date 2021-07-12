@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>事件处理</title>
+</head>
+
+<body>
+    <div id="root">
+        <h2>欢迎来到{{message}}学习</h2>
+        <!-- 绑定事件---标准方式 -->
+        <button v-on:click="demo01($event)">点我打印信息（v-on:click="demo01()"）</button></br>
+        <button v-on:click="demo01">点我打印信息（v-on:click="demo01"）</button></br>
+        <button @click="demo01">点我打印信息（@click="demo01"）</button></br>
+        <!-- 阻止默认行为  比如href跳转 prevent叫事件修饰符-->
+        <button @click.prevent="demo01">点我打印信息（@click="demo01"）</button></br>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: { //配置数据
+                message: '尚硅谷'
+            },
+            methods: {  //用于配置方法
+                demo01(event) {
+                    console.log(1, this.message = '测试', event.target.innerText)
+                    alert('信息1')   //this 是vm  此处的方法一定不要写成箭头函数
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
